@@ -9,6 +9,52 @@
     <Window.Background>
         <ImageBrush ImageSource="images/table.jpg"/>
     </Window.Background>
-    <Canvas x:Name="UserHand" Margin="547,362,504,137">
-    </Canvas>
+    <Grid>
+        <Canvas x:Name="UserHand" Margin="547,362,504,137">
+
+        </Canvas>
+        <Grid Margin="503,33,25,520" x:Name="DealerHand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+        </Grid>
+        <Grid x:Name="BetButtons" Margin="410,309,410,322">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0" Padding="20,10">
+                <Button x:Name="HitButton"  FontSize="20" Background="#53EC48" Click="HitButton_Click">
+                    ➕
+                </Button>
+            </Border>
+            <Border  Grid.Column="1" Padding="20,10">
+                <Button x:Name="StayButton"  FontSize="20" Background="#4B79F7" Click="StayButton_Click">
+                    ➖
+                </Button>
+            </Border>
+            <Border Grid.Column="2" Padding="20,10">
+                <Button x:Name="DoubleButon" FontSize="25" Background="#E50B0B" Click="DoubleButton_Click">
+                    x2
+                </Button>
+            </Border>
+        </Grid>
+        <TextBlock HorizontalAlignment="Left" FontSize="20" TextAlignment="Center" Margin="596,564,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" x:Name="Player1CardCount"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="20" TextAlignment="Center" Margin="595,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  x:Name="DealerHandCount"/>
+
+    </Grid>
+
 </Window>

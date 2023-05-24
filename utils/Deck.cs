@@ -1,81 +1,101 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+
 
 namespace BlackJackCS.utils
 {
     internal class Deck
     {
-        private Random rand;
-        
-        public string Card()
+        public int DecksAmmount;
+        public Deck(int DeckNum)
         {
-            rand = new Random();
+            DecksAmmount = DeckNum;
 
-            List<int[]> vect = new List<int[]>(){
-            new int []{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
-            new int []{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
-            new int []{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
-            new int []{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
-            };
-
-            int typeofcard = rand.Next(1, 13) % 4;
-            int numofcard = rand.Next(1, 13) % vect[typeofcard].Where(x => x > 0).ToArray().Length;
-            while (numofcard < 0)
+        }
+        public string Card(string playername)
+        {
+            string newcard;
+            int cardNum;
+            do
             {
-                numofcard = rand.Next(1, 13) % vect[typeofcard].Where(x => x > 0).ToArray().Length;
-            }
-            vect[typeofcard][numofcard] = -1;
-            numofcard += 1;
-            typeofcard += 1;
+                string cardletter = string.Empty;
 
-            string tipo;
-            switch (typeofcard)
-            {
-                case 1:
-                    tipo = "C";
-                    break;
-                case 2:
-                    tipo = "D";
-                    break;
-                case 3:
-                    tipo = "H";
-                    break;
-                case 4:
-                    tipo = "S";
-                    break;
-                default:
-                    tipo = "";
-                    break;
-            }
+                int typeCard = GetRandomNumInRange(1, 4);
+                cardNum = GetRandomNumInRange(1, 13);
 
-            if (numofcard >= 11)
-            {
-                string grande;
-                switch (numofcard)
+                string bigCardChar = string.Empty;
+
+                switch (typeCard)
                 {
-                    case 11:
-                        grande = "J";
+                    case 1:
+                        cardletter = "C";
                         break;
-                    case 12:
-                        grande = "Q";
+                    case 2:
+                        cardletter = "D";
                         break;
-                    case 13:
-                        grande = "K";
+                    case 3:
+                        cardletter = "H";
                         break;
-                    default:
-                        grande = "";
+                    case 4:
+                        cardletter = "S";
                         break;
                 }
+                if (cardNum >= 11)
+                {
 
-                return grande + tipo + ".png";
-            }
-            else
-            {
+                    switch (cardNum)
+                    {
+                        case 11:
+                            bigCardChar = "J";
+                            break;
+                        case 12:
+                            bigCardChar = "Q";
+                            break;
+                        case 13:
+                            bigCardChar = "K";
+                            break;
+                    }
+                    cardNum = 10;
+                }
+                newcard = bigCardChar != string.Empty ? bigCardChar : cardNum.ToString();
 
-                return numofcard.ToString() + tipo + ".png";
-            }
+                newcard += cardletter;
+                if (NeedToGetNewDeck())
+                {
+                    Globals.UsedCards.Clear();
+                }
+
+            } while (!CanUseCard(newcard));
+            Globals.UsedCards.Add(newcard);
+
+            Globals.PlayersCardsValue[playername].Add(cardNum);
+            return newcard;
+
+        }
+        private int GetRandomNumInRange(int min, int max)
+        {
+            Random r = new Random(Guid.NewGuid().GetHashCode());
+            int rInt = r.Next(min, max + 1);
+            return rInt;
+        }
+        public int CountUsedCards()
+        {
+            return Globals.UsedCards.Count;
+        }
+        private bool NeedToGetNewDeck()
+        {
+            return (CountUsedCards() / (DecksAmmount * 40) * 100) > 60;
+        }
+        private bool CanUseCard(string card)
+        {
+            return Globals.UsedCards.Where(val => val.Equals(card)).Count() < DecksAmmount;
+        }
+        public static int CardToNumber(string card)
+        {
+            _ = card.Last();
+            return 0;
         }
 
     }
+
 }
