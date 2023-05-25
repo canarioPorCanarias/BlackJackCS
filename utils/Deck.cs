@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace BlackJackCS.utils
 {
-    internal class Deck
+    public class Deck
     {
-        public int DecksAmmount;
+        private readonly int DecksAmmount;
         public Deck(int DeckNum)
         {
             DecksAmmount = DeckNum;

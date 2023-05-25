@@ -5,15 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlackJackCS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="724" Width="1224">
+        Title="MainWindow" Height="724" Width="1224" MinHeight="724" MinWidth="1224"
+        SizeToContent="WidthAndHeight">
     <Window.Background>
         <ImageBrush ImageSource="images/table.jpg"/>
     </Window.Background>
-    <Grid>
-        <Canvas x:Name="UserHand" Margin="547,362,504,137">
 
+    <Canvas >
+
+        <Canvas x:Name="UserHand" Canvas.Left="546" Canvas.Top="400" Height="166" Width="137">
         </Canvas>
-        <Grid Margin="503,33,25,520" x:Name="DealerHand">
+
+
+        <Grid x:Name="DealerHand" Height="100" Width="450" Canvas.Left="596" Canvas.Top="25" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -27,7 +31,7 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
         </Grid>
-        <Grid x:Name="BetButtons" Margin="410,309,410,322">
+        <Grid x:Name="BetButtons" Canvas.Left="530" Canvas.Top="345" HorizontalAlignment="Left" VerticalAlignment="Center" Width="230">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -37,24 +41,64 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <Border Grid.Column="0" Padding="20,10">
-                <Button x:Name="HitButton"  FontSize="20" Background="#53EC48" Click="HitButton_Click">
+                <Button x:Name="HitButton"  FontSize="20" Click="HitButton_Click" Margin="10,0,-14,-3" Height="40" VerticalAlignment="Bottom" RenderTransformOrigin="1.027,0.508" Width="40">
                     ➕
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20" Background="#53EC48" BorderThickness="1" Padding="2">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                    </Button.Style>
                 </Button>
             </Border>
             <Border  Grid.Column="1" Padding="20,10">
-                <Button x:Name="StayButton"  FontSize="20" Background="#4B79F7" Click="StayButton_Click">
+                <Button x:Name="StayButton"  FontSize="20" Background="#4B79F7" Click="StayButton_Click" Margin="-6,3,-2,-2" Width="40" Height="40">
                     ➖
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20"  Background="#4B79F7" BorderThickness="1" Padding="2">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
             </Border>
-            <Border Grid.Column="2" Padding="20,10">
-                <Button x:Name="DoubleButon" FontSize="25" Background="#E50B0B" Click="DoubleButton_Click">
+            <Border Grid.Column="1" Padding="20,10" Margin="76,0,34,0" Grid.ColumnSpan="2">
+                <Button x:Name="DoubleButon" FontSize="25"  Click="DoubleButton_Click" Margin="-18,3,-22,-3" Cursor="Hand" Width="40" Height="40">
                     x2
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="20"  Background="#E50B0B" BorderThickness="1" Padding="2">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
             </Border>
         </Grid>
-        <TextBlock HorizontalAlignment="Left" FontSize="20" TextAlignment="Center" Margin="596,564,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" x:Name="Player1CardCount"/>
-        <TextBlock HorizontalAlignment="Left" FontSize="20" TextAlignment="Center" Margin="595,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  x:Name="DealerHandCount"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="20" TextAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" x:Name="Player1CardCount" Width="49" Canvas.Left="584" Canvas.Top="561" RenderTransformOrigin="0.592,0.554"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="20" TextAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center"  x:Name="DealerHandCount" Width="61" Canvas.Left="583" Canvas.Top="270"/>
 
-    </Grid>
+    </Canvas>
 
 </Window>
