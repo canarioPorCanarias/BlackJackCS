@@ -17,6 +17,9 @@
         </Canvas>
 
 
+
+
+
         <Grid x:Name="DealerHand" Height="100" Width="450" Canvas.Left="596" Canvas.Top="25" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
@@ -31,7 +34,7 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
         </Grid>
-        <Grid x:Name="BetButtons" Canvas.Left="530" Canvas.Top="345" HorizontalAlignment="Left" VerticalAlignment="Center" Width="230">
+        <Grid Visibility="Hidden" x:Name="BetButtons" Canvas.Left="530" Canvas.Top="345" HorizontalAlignment="Left" VerticalAlignment="Center" Width="230">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -41,7 +44,7 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <Border Grid.Column="0" Padding="20,10">
-                <Button x:Name="HitButton"  FontSize="20" Click="HitButton_Click" Margin="10,0,-14,-3" Height="40" VerticalAlignment="Bottom" RenderTransformOrigin="1.027,0.508" Width="40">
+                <Button x:Name="HitButton"  FontSize="20" Click="HitButton_Click" Margin="10,0,-14,-3" Height="40" VerticalAlignment="Bottom" RenderTransformOrigin="1.027,0.508" Width="40" Cursor="Hand">
                     ➕
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -60,7 +63,7 @@
                 </Button>
             </Border>
             <Border  Grid.Column="1" Padding="20,10">
-                <Button x:Name="StayButton"  FontSize="20" Background="#4B79F7" Click="StayButton_Click" Margin="-6,3,-2,-2" Width="40" Height="40">
+                <Button x:Name="StayButton"  FontSize="20" Background="#4B79F7" Click="StayButton_Click" Margin="-6,3,-2,-2" Width="40" Height="40" Cursor="Hand">
                     ➖
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -98,6 +101,11 @@
         </Grid>
         <TextBlock HorizontalAlignment="Left" FontSize="20" TextAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" x:Name="Player1CardCount" Width="49" Canvas.Left="584" Canvas.Top="561" RenderTransformOrigin="0.592,0.554"/>
         <TextBlock HorizontalAlignment="Left" FontSize="20" TextAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center"  x:Name="DealerHandCount" Width="61" Canvas.Left="583" Canvas.Top="270"/>
+        <Button Content="Start Game" Canvas.Left="56" Canvas.Top="626" Height="22" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="StartGame" Click="StartGame_Click"/>
+        <Button Click="SettingsButton_Click"  x:Name="SettingsButton" Background="Transparent" BorderThickness="0"  Canvas.Left="1150" Canvas.Top="36" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="Hand">
+            <Image Source="./images/gear.png" />
+
+        </Button>
 
     </Canvas>
 

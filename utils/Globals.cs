@@ -42,5 +42,6 @@ namespace BlackJackCS.utils
         }
         public static int DeckAmmount = 1;
         public static Deck deck;
+       
     }
 }

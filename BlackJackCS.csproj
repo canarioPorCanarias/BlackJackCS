@@ -71,7 +71,6 @@
     <Compile Include="utils\Deck.cs" />
     <Compile Include="utils\Globals.cs" />
     <Compile Include="utils\Player.cs" />
-    <Compile Include="utils\Utils.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

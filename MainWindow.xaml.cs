@@ -14,47 +14,44 @@ namespace BlackJackCS
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Player player1;
-        private readonly Dealer dealer;
+        private Player player1;
+        private Dealer dealer;
+
         public MainWindow()
         {
             InitializeComponent();
             SourceInitialized += Window_SourceInitialized;
-            NewGameStart();
 
         }
         public void NewGameStart()
         {
 
             Globals.deck = new Deck(Globals.DeckAmmount);
-
+            Globals.PlayersCardsValue.Clear();
             Globals.PlayersCardsValue.Add("dealer", new List<int>() { 0 });
             Globals.PlayersCardsValue.Add("player1", new List<int>() { 0 });
+            Globals.players.Clear();
             Globals.players.Add("dealer");
             Globals.players.Add("player1");
-            Player player1 = new Player(this, "player1");
-            _ = new Dealer(this);
-
+            DealerHand.Children.Clear();
+            UserHand.Children.Clear();
+            player1 = new Player(this, "player1");
+            dealer = new Dealer(this);
             player1.start();
-
-
         }
-
-
 
         private void HitButton_Click(object sender, RoutedEventArgs e)
         {
-            player1.ButtonHit();
+            player1.GetHandPlayer();
         }
         private void StayButton_Click(object sender, RoutedEventArgs e)
         {
-            player1.ButtonStand();
-
+            BetButtons.Visibility = Visibility.Hidden;
+            dealer.start();
         }
 
         private void DoubleButton_Click(object sender, RoutedEventArgs e)
         {
-            player1.ButtonDouble();
 
         }
 
@@ -73,6 +70,15 @@ namespace BlackJackCS
 
 
             return toadd;
+        }
+
+
+        private void StartGame_Click(object sender, RoutedEventArgs e)
+        {
+            NewGameStart();
+            StartGame.Visibility = Visibility.Hidden;
+            BetButtons.Visibility = Visibility.Visible;
+
         }
 
         #region aspec ratio
@@ -182,7 +188,14 @@ namespace BlackJackCS
             return IntPtr.Zero;
 
         }
+        #endregion
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("1");
+        }
+
 
     }
-    #endregion
+
 }
